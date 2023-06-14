@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTaskCtrl = exports.postTaskCtrl = void 0;
+exports.deleteTaskCtrl = exports.putTaskCtrl = exports.getTaskCtrl = exports.postTaskCtrl = void 0;
 const utils_1 = require("../utils");
 const services_1 = require("../services");
 const postTaskCtrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,3 +35,26 @@ const getTaskCtrl = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getTaskCtrl = getTaskCtrl;
+const putTaskCtrl = ({ params, body }, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = params.id;
+        const userData = body;
+        const resp = yield (0, services_1.putTaskServ)(id, userData);
+        res.send(resp);
+    }
+    catch (error) {
+        (0, utils_1.handleHttp)(res, 'ERR_PUT_TASK');
+    }
+});
+exports.putTaskCtrl = putTaskCtrl;
+const deleteTaskCtrl = ({ params }, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = params.id;
+        const resp = yield (0, services_1.deleteTaskServ)(id);
+        res.send(resp);
+    }
+    catch (error) {
+        (0, utils_1.handleHttp)(res, 'ERR_DELETE_TASK');
+    }
+});
+exports.deleteTaskCtrl = deleteTaskCtrl;

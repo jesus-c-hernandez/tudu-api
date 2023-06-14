@@ -1,6 +1,15 @@
 import { Router } from 'express';
-import { getTaskCtrl, postTaskCtrl } from '../controllers';
-import { validatePostTask } from '../validators';
+import {
+  deleteTaskCtrl,
+  getTaskCtrl,
+  postTaskCtrl,
+  putTaskCtrl,
+} from '../controllers';
+import {
+  validateDeleteTask,
+  validatePostTask,
+  validatePutTask,
+} from '../validators';
 
 const router = Router();
 
@@ -8,5 +17,9 @@ const router = Router();
 router.post('/', validatePostTask, postTaskCtrl);
 // /task:userId [GET-By user]
 router.get('/:userId', getTaskCtrl);
+// /task:id [PUT]
+router.put('/:id', validatePutTask, putTaskCtrl);
+// /task:id [DELETE]
+router.delete('/:id', validateDeleteTask, deleteTaskCtrl);
 
 export default { router };

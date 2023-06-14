@@ -6,4 +6,6 @@ const validators_1 = require("../validators");
 const router = (0, express_1.Router)();
 router.post('/', validators_1.validatePostTask, controllers_1.postTaskCtrl);
 router.get('/:userId', controllers_1.getTaskCtrl);
+router.put('/:id', validators_1.validatePutTask, controllers_1.putTaskCtrl);
+router.delete('/:id', validators_1.validateDeleteTask, controllers_1.deleteTaskCtrl);
 exports.default = { router };
