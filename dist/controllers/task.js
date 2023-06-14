@@ -9,12 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postTaskCtrl = void 0;
+exports.getTaskCtrl = exports.postTaskCtrl = void 0;
 const utils_1 = require("../utils");
 const services_1 = require("../services");
 const postTaskCtrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const taskToCreate = req.body;
+        taskToCreate.state = 'incomplete';
         const resp = yield (0, services_1.postTaskServ)(taskToCreate);
         res.send(resp);
     }
@@ -23,3 +24,14 @@ const postTaskCtrl = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.postTaskCtrl = postTaskCtrl;
+const getTaskCtrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const userId = req.params.userId;
+        const resp = yield (0, services_1.getTaskByUserServ)(userId);
+        res.send(resp);
+    }
+    catch (error) {
+        (0, utils_1.handleHttp)(res, 'ERR_GET_USER_TASK');
+    }
+});
+exports.getTaskCtrl = getTaskCtrl;

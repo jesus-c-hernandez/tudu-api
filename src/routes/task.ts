@@ -1,8 +1,12 @@
 import { Router } from 'express';
-import { postTaskCtrl } from '../controllers';
+import { getTaskCtrl, postTaskCtrl } from '../controllers';
+import { validatePostTask } from '../validators';
 
 const router = Router();
 
-router.post('/', postTaskCtrl);
+// /task [POST]
+router.post('/', validatePostTask, postTaskCtrl);
+// /task:userId [GET-By user]
+router.get('/:userId', getTaskCtrl);
 
 export default { router };

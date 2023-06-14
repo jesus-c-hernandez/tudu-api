@@ -9,10 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postTaskServ = void 0;
+exports.getTaskByUserServ = exports.postTaskServ = void 0;
 const task_1 = require("../models/task");
 const postTaskServ = (task) => __awaiter(void 0, void 0, void 0, function* () {
     const respTask = yield task_1.TaskModel.create(task);
     return respTask;
 });
 exports.postTaskServ = postTaskServ;
+const getTaskByUserServ = (userId) => __awaiter(void 0, void 0, void 0, function* () {
+    const task = yield task_1.TaskModel.find({ userId: userId });
+    return task;
+});
+exports.getTaskByUserServ = getTaskByUserServ;

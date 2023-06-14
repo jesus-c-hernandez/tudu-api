@@ -5,13 +5,13 @@ import task from './task';
 
 const router = Router();
 
-const API_DIR = '/api/v1/';
+const API_DIR_V1 = '/api/v1/';
 
 // AUTH
-router.use(`${API_DIR}auth`, auth.router);
+router.use(`${API_DIR_V1}auth`, auth.router);
 // USERS
-router.use(`${API_DIR}user`, user.router);
+router.use(`${API_DIR_V1}user`, user.router);
 // TASKS
-router.use(`${API_DIR}task`, task.router);
+router.use(`${API_DIR_V1}task`, task.router);
 
 export { router };
