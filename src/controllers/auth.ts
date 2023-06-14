@@ -24,9 +24,6 @@ export const register: RequestHandler = async (req, res) => {
       password: string;
       name: string;
     };
-
-    console.log(userToRegister);
-
     const resp = await registerUser(userToRegister);
     res.send(resp);
   } catch (error) {

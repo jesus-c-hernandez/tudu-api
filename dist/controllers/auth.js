@@ -31,7 +31,6 @@ exports.login = login;
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userToRegister = req.body;
-        console.log(userToRegister);
         const resp = yield (0, services_1.registerUser)(userToRegister);
         res.send(resp);
     }

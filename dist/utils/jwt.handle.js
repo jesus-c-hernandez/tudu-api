@@ -14,9 +14,7 @@ require("dotenv/config");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET || 'token.0810823';
 const generateToken = (email) => {
-    console.log(JWT_SECRET);
     const jwt = (0, jsonwebtoken_1.sign)({ email }, JWT_SECRET, { expiresIn: '7d' });
-    console.log(jwt);
     return jwt;
 };
 exports.generateToken = generateToken;
